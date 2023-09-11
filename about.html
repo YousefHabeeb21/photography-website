@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  
+  <style>
+    
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      height: 100vh;
+      overflow-y: auto; /* Added overflow property to enable scrolling */
+    }
+
+    .sidebar {
+      flex: 0 0 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100vh;
+      background-color: #f2f2f2;
+      overflow-y: auto;
+    }
+
+    .sidebar img {
+      margin-top: 30px; /* Adjust the margin-top for spacing */
+      margin-bottom: 20px; /* Adjust the margin-bottom for spacing */
+      margin-top: 50px;
+      text-align: center;
+      width: 275px; /* Adjust the width as needed */
+      height: auto; /* Maintain aspect ratio */
+      border-radius: 40%;
+    }
+
+
+
+    .main-label {
+      top: 40px;
+      position: relative;
+      margin-top: 30px;
+      font-size: 20px;
+      font-family: 'Roboto', sans-serif;
+      cursor: pointer;
+      transition: color 0.3s ease-in-out;
+      transition: transform 0.15s ease-in-out;
+      text-decoration: none;
+      color: black;
+    }
+
+    .main-label:hover {
+      transform: scale(1.25);
+      color: #1e90ff;
+    }
+    /* Added hover effect for the "About Me" link */
+    .main-label a {
+      text-decoration: none; /* Remove underline */
+      color: black; /* Set desired link color */
+    }
+    .main-label a:hover {
+      color: #1e90ff;
+    }
+
+   
+    
+
+    .sub-labels {  
+      display: none;
+      margin-left: 20px;
+      font-size: 16px;
+      cursor: pointer;
+      color: #000000;
+      transition: color 0.3s ease-in-out;
+      text-decoration: none;
+      z-index: 999;
+      
+    }
+
+    .sub-labels a:hover {
+      transform: scale(1.25);
+      color: #1e90ff;
+    }
+
+    .sub-labels a {
+      display: block;
+      color: black;
+      text-decoration: none;
+    }
+    
+
+
+    .label-container {
+      text-align: center;
+    }
+    
+    .back-button {
+      margin-top: -20px;
+      cursor: pointer;
+      font-size: 20px;
+      color: blue;
+    }
+   
+   
+
+   
+    .social-icons {
+      display: flex;
+      margin-top: 80px;
+    }
+
+    .social-icons a {
+      display: inline-block;
+      margin: 0 10px;
+      position: relative;
+      transition: transform 0.15s ease-in-out;
+       margin-right: 20px;
+    }
+
+    .social-icons a:hover {
+      transform: scale(1.75); /* Adjust the scale factor as desired */
+    }
+
+    .social-icons a i {
+      font-size: 20px;
+      color: #000;
+    }
+    
+
+
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+
+
+ 
+    /* Main content styles */
+    .content {
+      padding: 90px;
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 325px;
+      overflow-y: auto;
+      background-color: #fff;
+      text-align: center;
+    }
+
+    .section-container {
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      color: #ff4081;
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: -5px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .about-section {
+      display: flex;
+      align-items: center;
+      
+    }
+
+    .about-section img {
+      max-width: 300px;
+      margin-top: 100px ;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-right: 100px;
+    }
+
+    .about-section p {
+      font-size: 24px;
+      max-width: 50%; /* Allow text to occupy full available width */
+      text-align: center; /* Align text to the left within the section */
+      white-space: normal; /* Allow text to wrap and occupy multiple lines */
+    }
+
+    
+    .centered-message {
+      background-color: #f2f2f2;
+      padding: 20px;
+      text-align: center;
+      margin-top: 30px;
+      color: #000000;
+      border: 1px solid #ccc;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      font-size: 18px;
+      line-height: 1.5;
+    }
+
+
+    /* .centered-message p {
+      margin: 0;
+      font-size: 18px;
+    } */
+
+
+  
+
+
+    @media screen and (max-width: 1080px) {
+    body {
+      flex-direction: column;
+    }
+
+    .sidebar {
+      flex: auto;
+      height: auto;
+      overflow-y: initial;
+      /* padding-bottom: 20px; */
+    }
+
+    .sidebar img {
+      margin-top: 20px;
+      margin-bottom: 40px;
+      text-align: center;
+      width: 500px; /* Adjust the width as needed */
+      height: auto; /* Maintain aspect ratio */
+    }
+
+    .main-label {
+      margin-bottom: 10px;
+      margin-top: 40px;  
+      font-size: 20px;  
+    }
+   
+    .sub-labels {  
+      display: none;
+      margin-left: 20px;
+      font-size: 20px;
+      cursor: pointer;
+      color: #000000;
+      transition: color 0.3s ease-in-out;
+      text-decoration: none;
+      z-index: 999;
+    }
+
+    .centered-message {
+      left: initial; /* Reset the left positioning */
+      right: 50px; /* Place it to the right on smaller screens */
+      position: absolute;
+      left: 30px; /* Adjust the left positioning as needed */
+      top: 25%; /* Center vertically */
+      transform: translateY(-20%); /* Center vertically */
+      max-width: 250px; 
+    }
+
+
+    .back-button {
+      margin-top: 10px;
+      cursor: pointer;
+      font-size: 40px;
+      color: blue;
+      position: fixed;
+      top: 140px; /* Adjust the top position as needed */
+      left: 350px;
+    }
+    
+
+    /* Adjust the margin and padding as needed for positioning */
+    .back-button i {
+      margin-right: 340px;
+    }
+
+    .sub-labels.active {
+      display: block;
+      opacity: 1;
+      transform: scaleX(1);
+    }
+
+    .social-icons {
+      margin-top: 60px;
+    }
+
+    .social-icons a i {
+      font-size: 40px;
+      padding: 30px;
+    }
+    .social-icons a:hover {
+      transform: scale(1.15); /* Adjust the scale factor as desired */
+    }
+
+
+    .content {
+        position: static;
+        overflow-y: auto;
+        padding: 20px;
+        background-color: #fff;
+        display: flex;
+       
+      }
+    
+  }
+  
+    
+  </style>
+</head>
+
+
+
+
+
+
+<body>
+  <div class="sidebar">
+    <a href="index.html">
+      <img src="logo.jpeg" alt="Logo">
+    </a>
+
+    <div class="label-container">
+      <div class="main-label"> Photography</div>
+        <div class="sub-labels">
+          <a class="sub-label" href="portrait.html">  <br> Portrait</a>
+          <a class="sub-label" href="weddings.html">  <br><br> Weddings</a>
+          <a class="sub-label" href="landscape.html">  <br><br> Street/Landscape</a>
+          <a class="sub-label" href="astro.html">  <br><br> Astrophotography</a>
+          <a class="sub-label" href="grad.html">  <br><br> Graduation</a>
+          <a class="sub-label" href="cars.html">  <br><br> Cars</a>
+          <a class="sub-label" href="brand.html">  <br><br> Brand</a>
+        </div>
+      </div>
+  
+    <div class="label-container">
+      <div class="main-label">Drone</div>
+        <div class="sub-labels">
+          <a class="sub-label" href="shots.html"> <br> Aerial Photography</a>
+          <a class="sub-label" href="vids.html">  <br> <br> Drone Videography</a>
+      </div>
+    </div> 
+
+  
+      <div class="label-container">
+        <div class="main-label">
+          <a href="about.html">About Me</a>
+        </div>
+      </div>
+  
+      <div class="social-icons">
+        <a href="https://www.instagram.com/habeeb.shoots/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="mailto:mustafamh16@gmail.com" target="_blank"><i class="far fa-envelope"></i></a>
+        <a href="https://www.linkedin.com/in/mustafahabeeb20/" target="_blank"><i class="fab fa-linkedin"></i></a>
+    </div>
+    
+  
+    
+    <div class="back-button" style="display: none;"><i class="fas fa-arrow-left"></i></div>
+
+    <div class="centered-message" id="centeredMessage">
+      <i class="fas fa-info-circle"></i>
+      <p>Interested in seeing more?<br>Check out my Instagram for more views.</p>
+    </div>
+    
+    
+    
+    
+    
+
+    <div class="content">
+      <div class="section-container">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-section">
+          <img src="about.jpeg" alt="About Me Image">
+          <p>
+            Hey there, I'm Mustafa, and I live in the Chicagoland area. I started doing photography a few years ago, and I really love taking pictures of special moments. 
+            I've tried a few different genres of photography, but I really enjoy taking pictures of people on the street, at weddings, and in portrait style.
+            Photography lets you see the world from other people's perspectives and also helps you learn new things. That's why I think it's a great idea for others 
+            to give it a try too. If you have any questions or just want to talk, you can email me or send me a message on Instagram. I'm excited to help you out and 
+            show you the photos I've taken!
+          </p>
+        </div>
+      </div>
+  
+    
+
+    <script>
+
+      
+
+
+
+
+
+
+    // code for responsive design for navigation
+    
+    document.addEventListener('DOMContentLoaded', function() {
+  var mainLabels = document.querySelectorAll('.main-label');
+  var subLabels = document.querySelectorAll('.sub-labels');
+  var backButton = document.querySelector('.back-button');
+  var socialIcons = document.querySelector('.social-icons');
+  var aboutLink = document.querySelector('.about-link');
+
+  function hideMainLabels() {
+    mainLabels.forEach(function(label) {
+      label.style.animation = 'fadeOut 0.75s forwards';
+      label.style.pointerEvents = 'none';
+    });
+  }
+
+  function showSubLabels(target) {
+    var index = Array.from(mainLabels).indexOf(target);
+    subLabels.forEach(function(label) {
+      label.style.animation = 'fadeOut 0.75s forwards';
+      setTimeout(function() {
+        label.style.display = 'none';
+        label.style.pointerEvents = 'none';
+      }, 300);
+    });
+
+    setTimeout(function() {
+      subLabels[index].style.display = 'block';
+      subLabels[index].style.animation = 'fadeIn 0.75s forwards';
+      subLabels[index].style.pointerEvents = 'auto';
+    }, 300);
+  }
+
+  function showAllSubLabels() {
+    subLabels.forEach(function(label) {
+      label.style.display = 'block';
+      label.style.animation = 'fadeIn 0.75s forwards';
+      label.style.pointerEvents = 'auto';
+    });
+  }
+
+  function hideSubLabels() {
+    subLabels.forEach(function(label) {
+      label.style.animation = 'fadeOut 0.75s forwards';
+      setTimeout(function() {
+        label.style.display = 'none';
+        label.style.pointerEvents = 'none';
+      }, 300);
+    });
+  }
+
+  function showMainLabels() {
+    mainLabels.forEach(function(label) {
+      label.style.animation = 'fadeIn 0.75s forwards';
+      label.style.pointerEvents = 'auto';
+    });
+  }
+
+  function toggleSocialIcons(visible) {
+    socialIcons.style.display = visible ? 'flex' : 'none';
+    socialIcons.style.pointerEvents = visible ? 'auto' : 'none';
+  }
+
+  function toggleLabels(event) {
+    var target = event.target.closest('.main-label');
+    if (target) {
+      hideMainLabels();
+      showSubLabels(target);
+      backButton.style.display = 'block';
+      backButton.style.pointerEvents = 'auto';
+      toggleSocialIcons(false);
+    }
+  }
+
+  function toggleBack() {
+  hideSubLabels();
+  setTimeout(function() {
+    showMainLabels();
+  }, 300);
+  backButton.style.display = 'none';
+  backButton.style.pointerEvents = 'none';
+  toggleSocialIcons(true);
+  showAllSubLabels();
+}
+
+
+  mainLabels.forEach(function(label) {
+    label.addEventListener('click', toggleLabels);
+  });
+
+  backButton.addEventListener('click', toggleBack);
+
+  aboutLink.addEventListener('click', function() {
+    hideMainLabels();
+    hideSubLabels();
+    backButton.style.display = 'none';
+    toggleSocialIcons(true);
+  });
+});
+
+
+
+
+////////////////////////////////////////////////////////////
+
+document.addEventListener('DOMContentLoaded', function() {
+  // ... Your existing code ...
+
+  // Inside the toggleLabels function
+  function toggleLabels(event) {
+    var target = event.target.closest('.main-label');
+    if (target) {
+      hideMainLabels();
+      hideSubLabels(); // Hide sub-labels
+      centeredMessage.style.display = 'none'; // Hide centered message
+      showSubLabels(target);
+      backButton.style.display = 'block';
+      backButton.style.pointerEvents = 'auto';
+      toggleSocialIcons(false);
+    }
+  }
+
+  // Inside the toggleBack function
+  function toggleBack() {
+    hideSubLabels();
+    setTimeout(function() {
+      showMainLabels();
+    }, 300);
+    backButton.style.display = 'none';
+    backButton.style.pointerEvents = 'none';
+    toggleSocialIcons(true);
+    centeredMessage.style.display = 'block'; // Show centered message
+  }
+
+  // ... Rest of your existing code ...
+});
+
+    
+    </script>
+</body>
+</html>
